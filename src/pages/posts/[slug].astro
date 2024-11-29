@@ -50,7 +50,9 @@ const { title, content, image, meta } = Astro.props;
             <img
                 src={image}
                 alt={title}
-                class="w-full h-[500px] object-cover rounded-lg"
+                class="w-full max-h-[600px] h-auto object-contain rounded-lg mx-auto"
+                srcset={`${image} 1200w, ${image} 800w, ${image} 400w`}
+                sizes="(max-width: 1200px) 100vw, 1200px"
             />
         </figure>
 
