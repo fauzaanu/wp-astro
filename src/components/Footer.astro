@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon';
 import { siteConfig } from '~/config';
 ---
 
@@ -25,10 +24,9 @@ import { siteConfig } from '~/config';
                 <div class="flex space-x-4">
                     {siteConfig.social.map(platform => (
                         <a href={platform.href} class="hover:text-white transition-colors">
-                            <Icon name={platform.icon} class="h-6 w-6" />
+                            test
                         </a>
                     ))}
-                    </a>
                 </div>
             </div>
         </div>
