@@ -1,5 +1,5 @@
 export const siteConfig = {
-    name: "The Daily Post",
+    name: "The Daily Posts",
     description: "Delivering thoughtful insights and compelling stories to our readers every day.",
     defaultLanguage: "en-US",
     dateFormat: {
