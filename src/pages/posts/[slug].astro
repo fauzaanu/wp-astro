@@ -34,7 +34,7 @@ const { title, content, image, meta } = Astro.props;
             <h1 class="text-4xl font-serif font-bold text-gray-900 mb-4" set:html={title} />
             {meta.author && (
                 <div class="text-gray-600">
-                    By <span class="font-medium">{meta.author}</span> • 
+                    By <span class="font-medium">{meta.author}</span> •
                     <time datetime={meta.date}>
                         {new Date(meta.date).toLocaleDateString('en-US', {
                             month: 'long',
@@ -54,7 +54,7 @@ const { title, content, image, meta } = Astro.props;
             />
         </figure>
 
-        <div class="prose prose-lg max-w-none">
+        <div class="prose prose-lg max-w-none text-zinc-900">
             <Fragment set:html={content} />
         </div>
     </article>
