@@ -5,8 +5,12 @@ export interface Props {
 }
 
 let postExcerpt = (post) => {
-    let content = post.content.rendered.split('.');
-    return `${content[0]}...`;
+    // Remove HTML tags and get plain text
+    let div = document.createElement('div');
+    div.innerHTML = post.content.rendered;
+    let text = div.textContent || div.innerText || '';
+    // Get first 100 characters
+    return text.substring(0, 100) + (text.length > 100 ? '...' : '');
 };
 const { post, variant = 'default' } = Astro.props;
 ---
@@ -50,13 +54,13 @@ const { post, variant = 'default' } = Astro.props;
                     })}
                 </span>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2 leading-snug">
+            <h3 class="text-lg font-bold text-gray-900 mb-3 leading-snug">
                 <a href={`/posts/${post.slug}/`}
-                   class="hover:text-blue-600 transition-colors"
+                   class="hover:text-blue-600 transition-colors line-clamp-2 block"
                    set:html={post.title.rendered} />
             </h3>
             <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
-                <div class="text-sm text-gray-600 line-clamp-1" set:html={postExcerpt(post)} />
+                <div class="text-sm text-gray-600 truncate max-w-[200px]" set:html={postExcerpt(post)} />
                 <a href={`/posts/${post.slug}/`}
                    class="flex items-center text-blue-600 hover:text-blue-800 text-sm font-semibold group">
                     Read
