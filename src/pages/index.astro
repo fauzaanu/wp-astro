@@ -8,45 +8,51 @@ let posts = await getPosts();
 ---
 
 <Layout title={siteConfig.name}>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        {/* Hero Section */}
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Featured Post */}
             <div class="lg:col-span-8">
                 {posts.length > 0 && (
-                    <div class="relative">
-                        <a href={`/posts/${posts[0].slug}/`}>
+                    <div class="relative group rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
+                        <a href={`/posts/${posts[0].slug}/`} class="block aspect-[16/9] lg:aspect-[16/10]">
                             <img
                                 src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
                                 alt={posts[0].title?.rendered}
-                                class="w-full max-h-[600px] h-auto object-contain rounded-lg mx-auto"
+                                class="w-full h-full object-cover"
                                 srcset={`${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 1200w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 800w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 400w`}
                                 sizes="(max-width: 1200px) 100vw, 1200px"
+                                loading="eager"
                             />
-                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
-                                <h1 class="text-3xl font-bold text-white" set:html={posts[0].title.rendered} />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight" set:html={posts[0].title.rendered} />
+                                </div>
                             </div>
                         </a>
                     </div>
                 )}
             </div>
             
-            {/* Latest Posts */}
-            <div class="lg:col-span-4 space-y-6">
+            {/* Latest Posts Sidebar */}
+            <aside class="lg:col-span-4 space-y-6">
                 <h2 class="text-2xl font-serif font-bold text-gray-900 mb-4">Latest Posts</h2>
-                {posts.slice(1, 4).map((post) => (
-                    <Card post={post} variant="compact" />
-                ))}
-            </div>
-        </div>
+                <div class="space-y-4">
+                    {posts.slice(1, 4).map((post) => (
+                        <Card post={post} variant="compact" />
+                    ))}
+                </div>
+            </aside>
+        </section>
 
-        {/* Regular Posts Grid */}
-        <div class="mt-12">
-            <h2 class="text-2xl font-serif font-bold text-gray-900 mb-6">More Stories</h2>
-            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* More Stories Grid */}
+        <section class="space-y-6">
+            <h2 class="text-2xl font-serif font-bold text-gray-900">More Stories</h2>
+            <div class="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.slice(4).map((post) => (
                     <Card post={post} />
                 ))}
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 </Layout>
