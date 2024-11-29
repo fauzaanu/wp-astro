@@ -18,7 +18,9 @@ let posts = await getPosts();
                             <img
                                 src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
                                 alt={posts[0].title?.rendered}
-                                class="w-full h-[500px] object-cover rounded-lg"
+                                class="w-full max-h-[600px] h-auto object-contain rounded-lg mx-auto"
+                                srcset={`${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 1200w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 800w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 400w`}
+                                sizes="(max-width: 1200px) 100vw, 1200px"
                             />
                             <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
                                 <h1 class="text-3xl font-bold text-white" set:html={posts[0].title.rendered} />
