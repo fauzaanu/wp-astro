@@ -2,49 +2,44 @@
 import { Icon } from 'astro-icon';
 ---
 
-<footer class="footer p-10 bg-neutral text-neutral-content mt-auto">
-    <div>
-        <p>
-            <Icon name="bi:wordpress" class="h-10 w-10 mb-1" />
-            Made for <a
-                class="underline text-white hover:decoration-transparent"
-                target="_blank"
-                href="https://kolkata.wordcamp.org/2022/"
-                >WordCamp Kolkata 2022</a
-            >
-            with by <a
-                href="https://and249.codes/"
-                target="_blank"
-                class="underline decoration-[#26a69a] font-extrabold text-white decoration-4"
-                >and249</a
-            >
-        </p>
-    </div>
-    <div>
-        <span class="footer-title">Social</span>
-        <div class="grid grid-flow-col gap-4 content-center">
-            <a
-                href="https://www.linkedin.com/in/anindo-neel-dutta-2a8050199/"
-                target="_blank"
-            >
-                <Icon
-                    name="mdi:linkedin"
-                    class="h-7 w-7 hover:text-[#0A66C2]"
-                />
-            </a>
-            <a href="https://www.instagram.com/and_249/" target="_blank">
-                <Icon
-                    name="ant-design:instagram-filled"
-                    class="h-7 w-7 hover:text-[#E1306C]"
-                />
-            </a>
-
-            <a
-                href="https://github.com/leen-neel/astro-wordpress"
-                target="_blank"
-            >
-                <Icon name="mdi:github" class="h-7 w-7 hover:text-[#fff]" />
-            </a>
+<footer class="bg-gray-900 text-gray-300 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-2">
+                <h2 class="text-2xl font-serif font-bold text-white mb-4">The Daily Post</h2>
+                <p class="text-gray-400">Delivering thoughtful insights and compelling stories to our readers every day.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="/categories" class="hover:text-white transition-colors">Categories</a></li>
+                    <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition-colors">
+                        <Icon name="mdi:linkedin" class="h-6 w-6" />
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <Icon name="mdi:twitter" class="h-6 w-6" />
+                    </a>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <Icon name="mdi:facebook" class="h-6 w-6" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-gray-400">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; {new Date().getFullYear()} The Daily Post. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="/terms" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
