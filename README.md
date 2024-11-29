@@ -27,12 +27,22 @@ Modified and improved from: https://github.com/leen-neel/astro-wordpress
 
 ### Useful docker commands
 
-Stop and remove all containers
+#### Stop and remove all containers
+
+```bash
 docker compose down
+```
 
-Remove the database volume to clean it
+#### Remove the database volume to clean it
+
+```bash
 docker volume rm astro-wordpress_db_data
+```
+```bash
 docker volume rm astro-wordpress_wordpress_data
+```
+#### Bring the services back up
 
-Bring the services back up
+```bash
 docker compose up -d
+```
