@@ -13,12 +13,12 @@ const { post } = Astro.props;
 <div class="card w-full bg-base-100 shadow-xl rounded-t-md md:w-96">
     <figure class="bg-white">
         <img
-            src={post._embedded['wp:featuredmedia']['0'].source_url}
-            alt={post.title.rendered}
+            src={post._embedded['wp:featuredmedia']['0']?.source_url}
+            alt={post.title?.rendered}
         />
     </figure>
     <div class="card-body bg-gray-700 rounded-b-md">
-        <a href={`/dinos/${post.slug}/`}>
+        <a href={`/posts/${post.slug}/`}>
             <h2
                 class="card-title hover:underline hover:decoration-wavy decoration-red-600 decoration-4"
                 set:html="post.title.rendered"
@@ -26,7 +26,7 @@ const { post } = Astro.props;
         </a>
         <p set:html={postExcerpt(post)} />
         <div class="card-actions justify-end">
-            <a href={`/dinos/${post.slug}/`}>
+            <a href={`/posts/${post.slug}/`}>
                 <button class="btn btn-primary"> Learn more</button>
             </a>
         </div>
