@@ -16,7 +16,7 @@ const { post, variant = 'default' } = Astro.props;
         />
         <div>
             <h3 class="font-medium text-gray-900">
-                <a href={`/posts/${post.slug}/`} class="line-clamp-2 hover:text-blue-600" set:html={post.title.rendered} />
+                <a href={`/posts/${post.slug}/`} class="line-clamp-2 hover:text-blue-600 block" set:html={post.title.rendered} />
             </h3>
             <p class="text-sm text-gray-500 mt-1">
                 {new Date(post.date).toLocaleDateString('en-US', {
