@@ -15,8 +15,8 @@ const { post, variant = 'default' } = Astro.props;
             class="w-24 h-24 object-cover rounded"
         />
         <div>
-            <h3 class="font-medium text-gray-900 line-clamp-2 hover:text-blue-600">
-                <a href={`/posts/${post.slug}/`} set:html={post.title.rendered} />
+            <h3 class="font-medium text-gray-900">
+                <a href={`/posts/${post.slug}/`} class="line-clamp-2 hover:text-blue-600" set:html={post.title.rendered} />
             </h3>
             <p class="text-sm text-gray-500 mt-1">
                 {new Date(post.date).toLocaleDateString('en-US', {
@@ -46,9 +46,9 @@ const { post, variant = 'default' } = Astro.props;
                     })}
                 </span>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-3 leading-snug">
+            <h3 class="text-lg font-bold text-gray-900 mb-3">
                 <a href={`/posts/${post.slug}/`}
-                   class="hover:text-blue-600 transition-colors line-clamp-2 block"
+                   class="hover:text-blue-600 transition-colors line-clamp-2 leading-snug block"
                    set:html={post.title.rendered} />
             </h3>
             <a href={`/posts/${post.slug}/`}
