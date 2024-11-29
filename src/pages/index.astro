@@ -6,16 +6,44 @@ import { getPosts } from '../../lib/api';
 let posts = await getPosts();
 ---
 
-<Layout title="posts!">
-    <section
-        class="p-2 grid gap-4 overflow-hidden grid-cols-1 place-items-center md:grid-cols-3"
-    >
-        {
-            posts.map((post) => (
-                <>
-                    <Card {post} />
-                </>
-            ))
-        }
-    </section>
+<Layout title="The Daily Post">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Featured Post */}
+            <div class="lg:col-span-8">
+                {posts.length > 0 && (
+                    <div class="relative">
+                        <a href={`/posts/${posts[0].slug}/`}>
+                            <img
+                                src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
+                                alt={posts[0].title?.rendered}
+                                class="w-full h-[500px] object-cover rounded-lg"
+                            />
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+                                <h1 class="text-3xl font-bold text-white" set:html={posts[0].title.rendered} />
+                            </div>
+                        </a>
+                    </div>
+                )}
+            </div>
+            
+            {/* Latest Posts */}
+            <div class="lg:col-span-4 space-y-6">
+                <h2 class="text-2xl font-serif font-bold text-gray-900 mb-4">Latest Posts</h2>
+                {posts.slice(1, 4).map((post) => (
+                    <Card post={post} variant="compact" />
+                ))}
+            </div>
+        </div>
+
+        {/* Regular Posts Grid */}
+        <div class="mt-12">
+            <h2 class="text-2xl font-serif font-bold text-gray-900 mb-6">More Stories</h2>
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {posts.slice(4).map((post) => (
+                    <Card post={post} />
+                ))}
+            </div>
+        </div>
+    </div>
 </Layout>

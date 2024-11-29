@@ -1,34 +1,65 @@
 ---
 export interface Props {
-    post: {};
+    post: any;
+    variant?: 'default' | 'compact';
 }
 
 let postExcerpt = (post) => {
     let content = post.content.rendered.split('.');
-    return `${content[0]}. ${content[1]}...`;
+    return `${content[0]}...`;
 };
-const { post } = Astro.props;
+const { post, variant = 'default' } = Astro.props;
 ---
 
-<div class="card w-full bg-base-100 shadow-xl rounded-t-md md:w-96">
-    <figure class="bg-white">
+{variant === 'compact' ? (
+    <article class="flex space-x-4 items-start">
         <img
             src={post._embedded['wp:featuredmedia']['0']?.source_url}
             alt={post.title?.rendered}
+            class="w-24 h-24 object-cover rounded"
         />
-    </figure>
-    <div class="card-body bg-gray-700 rounded-b-md">
+        <div>
+            <h3 class="font-medium text-gray-900 line-clamp-2 hover:text-blue-600">
+                <a href={`/posts/${post.slug}/`} set:html={post.title.rendered} />
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">
+                {new Date(post.date).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                })}
+            </p>
+        </div>
+    </article>
+) : (
+    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         <a href={`/posts/${post.slug}/`}>
-            <h2
-                class="card-title hover:underline hover:decoration-wavy decoration-red-600 decoration-4"
-                set:html="post.title.rendered"
+            <img
+                src={post._embedded['wp:featuredmedia']['0']?.source_url}
+                alt={post.title?.rendered}
+                class="w-full h-48 object-cover"
             />
         </a>
-        <p set:html={postExcerpt(post)} />
-        <div class="card-actions justify-end">
-            <a href={`/posts/${post.slug}/`}>
-                <button class="btn btn-primary"> Learn more</button>
-            </a>
+        <div class="p-4">
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                <a href={`/posts/${post.slug}/`} 
+                   class="hover:text-blue-600 transition-colors"
+                   set:html={post.title.rendered} />
+            </h3>
+            <p class="text-gray-600 text-sm mb-4" set:html={postExcerpt(post)} />
+            <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                    })}
+                </span>
+                <a href={`/posts/${post.slug}/`} 
+                   class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                    Read More →
+                </a>
+            </div>
         </div>
-    </div>
-</div>
+    </article>
+)}
