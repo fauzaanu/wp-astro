@@ -2,6 +2,21 @@ export const siteConfig = {
     name: "The Daily Posts",
     description: "Delivering thoughtful insights and compelling stories to our readers every day.",
     defaultLanguage: "en-US",
+    siteUrl: "https://thedailyposts.com", // Replace with your actual domain
+    author: {
+        name: "The Daily Posts Team",
+        email: "team@thedailyposts.com",
+        url: "https://thedailyposts.com/about"
+    },
+    organization: {
+        name: "The Daily Posts",
+        logo: "/images/logo.svg",
+        sameAs: [
+            "https://twitter.com/thedailyposts",
+            "https://facebook.com/thedailyposts",
+            "https://linkedin.com/company/thedailyposts"
+        ]
+    },
     dateFormat: {
         month: 'long',
         day: 'numeric',
@@ -22,5 +37,10 @@ export const siteConfig = {
             { name: "Privacy Policy", href: "/privacy" },
             { name: "Terms of Service", href: "/terms" }
         ]
+    },
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        siteName: "The Daily Posts"
     }
 } as const;

@@ -5,24 +5,58 @@ import { siteConfig } from '~/config';
 
 export interface Props {
     title: string;
+    description?: string;
+    image?: string;
+    canonicalURL?: string;
 }
 
-const { title } = Astro.props;
+const {
+    title,
+    description = siteConfig.description,
+    image = siteConfig.organization.logo,
+    canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+} = Astro.props;
+
 const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={siteConfig.defaultLanguage}>
     <head>
+        <!-- Basic Meta Tags -->
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{fullTitle}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalURL} />
+        <meta name="author" content={siteConfig.author.name} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <title>{fullTitle}</title>
-        <meta
-            name="description"
-            content={siteConfig.description}
-        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content={siteConfig.openGraph.type} />
+        <meta property="og:site_name" content={siteConfig.openGraph.siteName} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:locale" content={siteConfig.openGraph.locale} />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={fullTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+
+        <!-- JSON-LD -->
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": siteConfig.organization.name,
+            "url": siteConfig.siteUrl,
+            "logo": siteConfig.organization.logo,
+            "sameAs": siteConfig.organization.sameAs
+        })} />
     </head>
     <body>
         <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
