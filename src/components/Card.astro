@@ -32,31 +32,37 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-        <a href={`/posts/${post.slug}/`}>
+    <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
             <img
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
                 alt={post.title?.rendered}
-                class="w-full h-48 object-cover"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
             />
         </a>
-        <div class="p-4">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                <a href={`/posts/${post.slug}/`}
-                   class="hover:text-blue-600 transition-colors"
-                   set:html={post.title.rendered} />
-            </h3>
-            <div class="flex items-center justify-between">
-                <span class="text-sm text-gray-500">
+        <div class="p-5">
+            <div class="mb-4">
+                <span class="text-xs font-medium text-gray-500 tracking-wider">
                     {new Date(post.date).toLocaleDateString('en-US', {
                         month: 'long',
                         day: 'numeric',
                         year: 'numeric',
                     })}
                 </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2 leading-snug">
                 <a href={`/posts/${post.slug}/`}
-                   class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-                    Read More →
+                   class="hover:text-blue-600 transition-colors"
+                   set:html={post.title.rendered} />
+            </h3>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+                <div class="text-sm text-gray-600 line-clamp-1" set:html={postExcerpt(post)} />
+                <a href={`/posts/${post.slug}/`}
+                   class="flex items-center text-blue-600 hover:text-blue-800 text-sm font-semibold group">
+                    Read
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
         </div>
