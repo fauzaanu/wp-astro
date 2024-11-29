@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '~/components/Card.astro';
-import { getPosts } from '../../lib/api';
-import { siteConfig } from '~/config';
+import {getPosts} from '../../lib/api';
+import {siteConfig} from '~/config';
 
 let posts = await getPosts();
 ---
@@ -10,39 +10,40 @@ let posts = await getPosts();
 <Layout title={siteConfig.name}>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         {/* Hero Section */}
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <section class="flex flex-wrap w-full gap-2">
             {/* Featured Post */}
-            <div class="lg:col-span-8">
+            <div class="w-1/2">
                 {posts.length > 0 && (
-                    <div class="relative group rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
-                        <a href={`/posts/${posts[0].slug}/`} class="block aspect-[16/9] lg:aspect-[16/10]">
-                            <img
-                                src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
-                                alt={posts[0].title?.rendered}
-                                class="w-full h-full object-cover"
-                                srcset={`${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 1200w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 800w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 400w`}
-                                sizes="(max-width: 1200px) 100vw, 1200px"
-                                loading="eager"
-                            />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                                <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight" set:html={posts[0].title.rendered} />
+                        <div class="relative group rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
+                            <a href={`/posts/${posts[0].slug}/`} class="block aspect-[16/9] lg:aspect-[16/10]">
+                                <img
+                                        src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
+                                        alt={posts[0].title?.rendered}
+                                        class="w-full h-full object-cover"
+                                        srcset={`${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 1200w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 800w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 400w`}
+                                        sizes="(max-width: 1200px) 100vw, 1200px"
+                                        loading="eager"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight"
+                                            set:html={posts[0].title.rendered}/>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                 )}
             </div>
 
             {/* Latest Posts Sidebar */}
-            <aside class="lg:col-span-4 space-y-6">
+            <div class="w-1/2 flex flex-col gap-2">
                 <h2 class="text-2xl font-serif font-bold text-gray-900 mb-4">Latest Posts</h2>
                 <div class="space-y-4">
                     {posts.slice(1, 4).map((post) => (
-                        <Card post={post} variant="compact" />
+                            <Card post={post} variant="compact"/>
                     ))}
                 </div>
-            </aside>
+            </div>
         </section>
 
         {/* More Stories Grid */}
@@ -50,7 +51,7 @@ let posts = await getPosts();
             <h2 class="text-2xl font-serif font-bold text-gray-900">More Stories</h2>
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.slice(4).map((post) => (
-                    <Card post={post} variant="standard" />
+                        <Card post={post}/>
                 ))}
             </div>
         </section>
