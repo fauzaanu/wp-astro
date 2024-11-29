@@ -14,7 +14,7 @@ const {
     title,
     description = siteConfig.description,
     image = siteConfig.organization.logo,
-    canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+    canonicalURL = new URL(Astro.url.pathname, siteConfig.siteUrl).href,
 } = Astro.props;
 
 const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
