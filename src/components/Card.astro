@@ -14,11 +14,11 @@ const { post, variant = 'default' } = Astro.props;
             alt={post.title?.rendered}
             class="w-24 h-24 object-cover rounded"
         />
-        <div>
+        <div class="min-w-0 flex-1">
             <h3 class="font-medium text-gray-900">
-                <a href={`/posts/${post.slug}/`} class="truncate hover:text-blue-600 block" set:html={post.title.rendered} />
+                <a href={`/posts/${post.slug}/`} class="truncate hover:text-blue-600 block max-w-full" set:html={post.title.rendered} />
             </h3>
-            <p class="text-sm text-gray-500 mt-1">
+            <p class="text-sm text-gray-500 mt-1 truncate">
                 {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
