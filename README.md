@@ -1,50 +1,38 @@
-# Welcome to [Astro](https://astro.build)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+# Atro Wordpress
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Modified and improved from: https://github.com/leen-neel/astro-wordpress
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+- Added a docker compose for local development or .. 
+- Added aider-chat for AI (python/uv)
+- Created config for making the site settings / metadata dynamic
+- Created a .env.sample file making it more clear on how the variables should be
+- Simplfied the UI
+- Using redis as a cache with Redis Object Cache plugin
 
+### Setup
+1. Copy the .env.sample file and rename it to .env
+2. Make sure to have a featured image on all posts
+3. Change the permalink to post name
+4. Run `docker compose up -d`
+5. Visit http://localhost:8000
+6. To setup redis object cache we need to edit the wp-config.php file
+7. First install vim inside the container
+8. Run `docker compose exec bash`
+9. Run `apt-get update && apt-get install -y vim`
+10. RUN `vim wp-config.php`
+11. See https://github.com/rhubarbgroup/redis-cache/blob/develop/INSTALL.md#3-configuring-the-plugin and edit accordingly
+12. Reload and enable object cache form interface
+13. Develop front on astro :)
 
-## 🚀 Project Structure
+### Useful docker commands
 
-Inside of your Astro project, you'll see the following folders and files:
+# Stop and remove all containers
+docker compose down
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+# Remove the database volume to clean it
+docker volume rm astro-wordpress_db_data
+docker volume rm astro-wordpress_wordpress_data
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Bring the services back up
+docker compose up -d

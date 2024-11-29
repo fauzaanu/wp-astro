@@ -1,7 +1,7 @@
 export const siteConfig = {
     name: "The Daily Posts",
     description: "Delivering thoughtful insights and compelling stories to our readers every day.",
-    defaultLanguage: "en-US",
+    defaultLanguage: "en",
     siteUrl: "https://thedailyposts.com", // Replace with your actual domain
     author: {
         name: "The Daily Posts Team",
