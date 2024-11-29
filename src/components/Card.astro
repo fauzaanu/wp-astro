@@ -42,11 +42,10 @@ const { post, variant = 'default' } = Astro.props;
         </a>
         <div class="p-4">
             <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                <a href={`/posts/${post.slug}/`} 
+                <a href={`/posts/${post.slug}/`}
                    class="hover:text-blue-600 transition-colors"
                    set:html={post.title.rendered} />
             </h3>
-            <p class="text-gray-600 text-sm mb-4" set:html={postExcerpt(post)} />
             <div class="flex items-center justify-between">
                 <span class="text-sm text-gray-500">
                     {new Date(post.date).toLocaleDateString('en-US', {
@@ -55,7 +54,7 @@ const { post, variant = 'default' } = Astro.props;
                         year: 'numeric',
                     })}
                 </span>
-                <a href={`/posts/${post.slug}/`} 
+                <a href={`/posts/${post.slug}/`}
                    class="text-blue-600 hover:text-blue-800 text-sm font-medium">
                     Read More →
                 </a>
