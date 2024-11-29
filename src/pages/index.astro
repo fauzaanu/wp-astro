@@ -46,9 +46,9 @@ let posts = await getPosts();
         </section>
 
         {/* More Stories Grid */}
-        <section class="space-y-6 max-w-full">
+        <section class="space-y-8">
             <h2 class="text-2xl font-serif font-bold text-gray-900">More Stories</h2>
-            <div class="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 mx-auto">
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.slice(4).map((post) => (
                     <Card post={post} variant="standard" />
                 ))}
