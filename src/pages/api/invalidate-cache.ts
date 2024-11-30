@@ -1,5 +1,6 @@
 import { createClient } from 'redis';
 import type { APIRoute } from 'astro';
+import {invalidatePostCache} from "lib/api";
 
 const redis = createClient({
     url: process.env.REDIS_URL || 'redis://localhost:6379',
@@ -19,9 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
                 );
             }
 
-            // Invalidate the cache for the specific post (based on its slug)
-            const cacheKey = `api_post_${slug}`;
-            await redis.del(cacheKey); // Delete the cache for that specific post
+            await invalidatePostCache(slug)
 
             return new Response(
                 JSON.stringify({ message: 'Cache invalidated successfully' }),
