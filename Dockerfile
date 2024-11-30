@@ -14,8 +14,5 @@ RUN npm ci
 # Copy local code to the container image.
 COPY . ./
 
-# Build the app.
-RUN npm run build
-
 # Serve the app
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "build", "&&", "npm", "run", "start"]

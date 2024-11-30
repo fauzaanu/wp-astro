@@ -20,7 +20,6 @@ const { slug } = Astro.params;
 const post = await fetchPostBySlug(slug);
 
 const { title, content, meta, _embedded} = post;
-export const prerender = true;
 ---
 
 <Layout title={title.rendered}>
