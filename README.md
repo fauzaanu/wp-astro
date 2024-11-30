@@ -1,7 +1,8 @@
-
 # Atro Wordpress
 
 Modified and improved from: https://github.com/leen-neel/astro-wordpress
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.app/template/i7GFrB?referralCode=NC4Tt6)
 
 - Added a docker compose for local development or .. 
 - Added aider-chat for AI (python/uv)
