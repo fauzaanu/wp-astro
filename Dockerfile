@@ -1,40 +1,21 @@
-# Use the official Node.js image as the base image
-FROM node:18 AS build
+# Use the Node alpine official image
+# https://hub.docker.com/_/node
+FROM node:lts-alpine
 
-# Set the working directory inside the container
+# Create and change to the app directory.
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
+# Copy the files to the container image
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install packages
+RUN npm ci
 
-# Copy the entire project into the container
-COPY . .
+# Copy local code to the container image.
+COPY . ./
 
-# Build the Astro project (for production)
+# Build the app.
 RUN npm run build
 
-# Install the necessary packages to run Astro in production
-FROM node:18-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json to install production dependencies
-COPY package*.json ./
-
-# Install only the production dependencies
-RUN npm install --omit=dev
-
-# Copy the rest of the application
-COPY . .
-
-ENV ASTRO_PORT=3000
-
-# Expose the port for the Astro app (default is 3000)
-EXPOSE 3000
-
-# Start the Astro app in production mode
+# Serve the app
 CMD ["npm", "run", "start"]
