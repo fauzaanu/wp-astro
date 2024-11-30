@@ -1,28 +1,27 @@
 {
-    "name": "@and249/astro-wordpress",
-    "type": "module",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "dev": "astro dev",
-        "start": "astro dev",
-        "build": "astro build",
-        "preview": "astro preview",
-        "astro": "astro"
-    },
-    "dependencies": {
-        "@astrojs/node": "^8.3.4",
-        "@astrojs/tailwind": "^5.1.2",
-        "astro": "^4.16.16",
-        "astro-icon": "^1.1.4",
-        "daisyui": "^4.12.14",
-        "dotenv": "^16.0.3",
-        "lru-cache": "^11.0.2",
-        "redis": "^4.7.0",
-        "tailwindcss": "^3.2.4"
-    },
-    "devDependencies": {
-        "@tailwindcss/line-clamp": "^0.4.4",
-        "@tailwindcss/typography": "^0.5.15"
-    }
+  "name": "@and249/astro-wordpress",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "node ./dist/server/entry.mjs",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.3.4",
+    "@astrojs/tailwind": "^5.1.2",
+    "astro": "^4.16.16",
+    "astro-icon": "^1.1.4",
+    "daisyui": "^4.12.14",
+    "dotenv": "^16.0.3",
+    "redis": "^4.7.0",
+    "tailwindcss": "^3.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.15"
+  }
 }

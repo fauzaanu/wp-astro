@@ -19,7 +19,8 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await fetchPostBySlug(slug);
 
-const { title, content, image, meta, custom } = post;
+const { title, content, meta, _embedded} = post;
+export const prerender = true;
 ---
 
 <Layout title={title.rendered}>
@@ -42,10 +43,10 @@ const { title, content, image, meta, custom } = post;
 
         <figure class="mb-12">
             <img
-                src={custom.featured_image}
+                src={_embedded['wp:featuredmedia']['0'].source_url}
                 alt={title.rendered}
                 class="w-full max-h-[600px] h-auto object-contain rounded-lg mx-auto"
-                srcset={`${custom.featured_image} 1200w, ${custom.featured_image} 800w, ${custom.featured_image} 400w`}
+                srcset={`${_embedded['wp:featuredmedia']['0'].link} 1200w, ${_embedded['wp:featuredmedia']['0'].link} 800w, ${_embedded['wp:featuredmedia']['0'].link} 400w`}
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 loading="eager"
                 decoding="async"
