@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import Card from '~/components/Card.astro';
-import { searchPosts } from '~/lib/api';
+import { searchPosts } from 'lib/api.js';
 
 const query = Astro.url.searchParams.get('q') || '';
 const posts = query ? await searchPosts(query) : [];
@@ -13,14 +13,14 @@ const posts = query ? await searchPosts(query) : [];
             <h1 class="text-3xl font-serif font-bold text-zinc-100 mb-4">Search Results</h1>
             <form action="/search" method="get" class="max-w-2xl">
                 <div class="flex gap-4">
-                    <input 
-                        type="search" 
-                        name="q" 
+                    <input
+                        type="search"
+                        name="q"
                         value={query}
-                        placeholder="Search posts..." 
+                        placeholder="Search posts..."
                         class="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-100/10 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-100/20"
                     />
-                    <button 
+                    <button
                         type="submit"
                         class="px-6 py-2 bg-zinc-800 border border-zinc-100/10 text-zinc-100 hover:bg-zinc-700 transition-colors"
                     >
@@ -40,7 +40,7 @@ const posts = query ? await searchPosts(query) : [];
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map(post => (
-                <Card 
+                <Card
                     title={post.title.rendered}
                     excerpt={post.excerpt.rendered}
                     image={post._embedded?.['wp:featuredmedia']?.[0]?.source_url}
