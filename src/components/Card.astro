@@ -16,7 +16,11 @@ const { post, variant = 'default' } = Astro.props;
         />
         <div class="min-w-0 flex-1">
             <h3 class="font-medium text-zinc-100">
-                <a href={`/posts/${post.slug}/`} class="truncate hover:text-zinc-300 transition-colors block max-w-full" set:html={post.title.rendered} />
+                <a 
+                    href={`/posts/${post.slug}/`} 
+                    class="truncate hover:text-zinc-300 transition-colors block max-w-full" 
+                    set:html={post.title?.rendered || 'Untitled Post'} 
+                />
             </h3>
             <p class="text-sm text-zinc-400 mt-1 truncate">
                 {new Date(post.date).toLocaleDateString('en-US', {
@@ -47,9 +51,11 @@ const { post, variant = 'default' } = Astro.props;
                 </span>
             </div>
             <h3 class="text-lg font-bold text-zinc-100 mb-3">
-                <a href={`/posts/${post.slug}/`}
-                   class="hover:text-zinc-300 transition-colors truncate leading-snug block"
-                   set:html={post.title.rendered} />
+                <a 
+                    href={`/posts/${post.slug}/`}
+                    class="hover:text-zinc-300 transition-colors truncate leading-snug block"
+                    set:html={post.title?.rendered || 'Untitled Post'} 
+                />
             </h3>
             <a href={`/posts/${post.slug}/`}
                class="inline-flex items-center text-zinc-300 hover:text-zinc-100 text-sm font-semibold group mt-4">
