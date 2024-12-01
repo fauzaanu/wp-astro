@@ -27,7 +27,7 @@ const categoriesWithCounts = await Promise.all(
             {categoriesWithCounts.map((category) => (
                 <a 
                     href={`/categories/${category.slug}/`}
-                    class="block p-6 bg-zinc-800 rounded-xl shadow-sm hover:shadow-zinc-700/50 hover:shadow-lg transition-shadow border border-zinc-700"
+                    class="block p-6 bg-zinc-800 shadow-sm hover:shadow-zinc-700/50 hover:shadow-lg transition-shadow border border-zinc-100/10"
                 >
                     <div class="flex justify-between items-start mb-2">
                         <h2 class="text-xl font-bold text-zinc-100">{category.name}</h2>

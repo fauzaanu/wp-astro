@@ -12,7 +12,7 @@ const { post, variant = 'default' } = Astro.props;
         <img
             src={post._embedded['wp:featuredmedia']['0']?.source_url}
             alt={post.title?.rendered}
-            class="w-24 h-24 object-cover rounded-lg"
+            class="w-24 h-24 object-cover border border-zinc-100/10"
         />
         <div class="min-w-0 flex-1">
             <h3 class="font-medium text-zinc-100">
@@ -28,7 +28,7 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="bg-zinc-800 rounded-xl overflow-hidden border border-zinc-700 shadow-lg hover:shadow-zinc-700/50 transition-all duration-300 hover:-translate-y-1">
+    <article class="bg-zinc-800 overflow-hidden border border-zinc-100/10 shadow-lg hover:shadow-zinc-700/50 transition-all duration-300 hover:-translate-y-1">
         <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
             <img
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}

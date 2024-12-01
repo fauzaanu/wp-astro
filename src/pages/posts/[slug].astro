@@ -44,7 +44,7 @@ const { title, content, meta, _embedded} = post;
             <img
                 src={_embedded['wp:featuredmedia']['0'].source_url}
                 alt={title.rendered}
-                class="w-full max-h-[600px] h-auto object-contain rounded-lg mx-auto"
+                class="w-full max-h-[600px] h-auto object-contain mx-auto border border-zinc-100/10"
                 srcset={`${_embedded['wp:featuredmedia']['0'].source_url} 1200w, ${_embedded['wp:featuredmedia']['0'].source_url} 800w, ${_embedded['wp:featuredmedia']['0'].source_url} 400w`}
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 loading="eager"
