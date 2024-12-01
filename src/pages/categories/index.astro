@@ -16,27 +16,27 @@ const categoriesWithCounts = await Promise.all(
 );
 ---
 
-<Layout title="Categories">
+<Layout title="Categories" class="bg-zinc-900">
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <header class="text-center mb-12">
-            <h1 class="text-4xl font-serif font-bold text-gray-900 mb-4">Categories</h1>
-            <p class="text-lg text-gray-600">Browse all our content categories</p>
+            <h1 class="text-4xl font-serif font-bold text-zinc-100 mb-4">Categories</h1>
+            <p class="text-lg text-zinc-400">Browse all our content categories</p>
         </header>
 
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {categoriesWithCounts.map((category) => (
                 <a 
                     href={`/categories/${category.slug}/`}
-                    class="block p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                    class="block p-6 bg-zinc-800 rounded-xl shadow-sm hover:shadow-zinc-700/50 hover:shadow-lg transition-shadow border border-zinc-700"
                 >
                     <div class="flex justify-between items-start mb-2">
-                        <h2 class="text-xl font-bold text-gray-900">{category.name}</h2>
-                        <span class="px-2 py-1 text-sm font-medium bg-gray-100 text-gray-700 rounded-full">
+                        <h2 class="text-xl font-bold text-zinc-100">{category.name}</h2>
+                        <span class="px-2 py-1 text-sm font-medium bg-zinc-700 text-zinc-300 rounded-full">
                             {category.postCount} posts
                         </span>
                     </div>
                     {category.description && (
-                        <p class="text-gray-600 line-clamp-2">{category.description}</p>
+                        <p class="text-zinc-400 line-clamp-2">{category.description}</p>
                     )}
                 </a>
             ))}
