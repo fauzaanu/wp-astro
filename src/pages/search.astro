@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import Card from '~/components/Card.astro';
+import { searchPosts } from '~/lib/api';
+
+const query = Astro.url.searchParams.get('q') || '';
+const posts = query ? await searchPosts(query) : [];
+---
+
+<Layout title={`Search Results for "${query}"`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-8">
+            <h1 class="text-3xl font-serif font-bold text-zinc-100 mb-4">Search Results</h1>
+            <form action="/search" method="get" class="max-w-2xl">
+                <div class="flex gap-4">
+                    <input 
+                        type="search" 
+                        name="q" 
+                        value={query}
+                        placeholder="Search posts..." 
+                        class="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-100/10 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-100/20"
+                    />
+                    <button 
+                        type="submit"
+                        class="px-6 py-2 bg-zinc-800 border border-zinc-100/10 text-zinc-100 hover:bg-zinc-700 transition-colors"
+                    >
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {query && (
+            <div class="mb-6">
+                <p class="text-zinc-400">
+                    Found {posts.length} result{posts.length === 1 ? '' : 's'} for "{query}"
+                </p>
+            </div>
+        )}
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map(post => (
+                <Card 
+                    title={post.title.rendered}
+                    excerpt={post.excerpt.rendered}
+                    image={post._embedded?.['wp:featuredmedia']?.[0]?.source_url}
+                    href={`/posts/${post.slug}`}
+                />
+            ))}
+        </div>
+
+        {query && posts.length === 0 && (
+            <p class="text-zinc-400">No posts found matching your search.</p>
+        )}
+    </div>
+</Layout>
