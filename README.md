@@ -47,3 +47,4 @@ docker volume rm astro-wordpress_wordpress_data
 ```bash
 docker compose up -d
 ```
+.
