@@ -8,17 +8,17 @@ const { post, variant = 'default' } = Astro.props;
 ---
 
 {variant === 'compact' ? (
-    <article class="flex space-x-4 items-start">
+    <article class="flex space-x-4 items-start group">
         <img
             src={post._embedded['wp:featuredmedia']['0']?.source_url}
             alt={post.title?.rendered}
-            class="w-24 h-24 object-cover rounded"
+            class="w-24 h-24 object-cover rounded-lg"
         />
         <div class="min-w-0 flex-1">
-            <h3 class="font-medium text-gray-900">
-                <a href={`/posts/${post.slug}/`} class="truncate hover:text-blue-600 block max-w-full" set:html={post.title.rendered} />
+            <h3 class="font-medium text-zinc-100">
+                <a href={`/posts/${post.slug}/`} class="truncate hover:text-zinc-300 transition-colors block max-w-full" set:html={post.title.rendered} />
             </h3>
-            <p class="text-sm text-gray-500 mt-1 truncate">
+            <p class="text-sm text-zinc-400 mt-1 truncate">
                 {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
@@ -28,7 +28,7 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <article class="bg-zinc-800 rounded-xl overflow-hidden border border-zinc-700 shadow-lg hover:shadow-zinc-700/50 transition-all duration-300 hover:-translate-y-1">
         <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
             <img
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
@@ -38,7 +38,7 @@ const { post, variant = 'default' } = Astro.props;
         </a>
         <div class="p-5">
             <div class="mb-4">
-                <span class="text-xs font-medium text-gray-500 tracking-wider">
+                <span class="text-xs font-medium text-zinc-400 tracking-wider">
                     {new Date(post.date).toLocaleDateString('en-US', {
                         month: 'long',
                         day: 'numeric',
@@ -46,13 +46,13 @@ const { post, variant = 'default' } = Astro.props;
                     })}
                 </span>
             </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-3">
+            <h3 class="text-lg font-bold text-zinc-100 mb-3">
                 <a href={`/posts/${post.slug}/`}
-                   class="hover:text-blue-600 transition-colors truncate leading-snug block"
+                   class="hover:text-zinc-300 transition-colors truncate leading-snug block"
                    set:html={post.title.rendered} />
             </h3>
             <a href={`/posts/${post.slug}/`}
-               class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-semibold group mt-4">
+               class="inline-flex items-center text-zinc-300 hover:text-zinc-100 text-sm font-semibold group mt-4">
                 Read
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
