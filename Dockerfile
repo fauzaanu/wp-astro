@@ -1,14 +1,13 @@
-# Use the Node alpine official image
-# https://hub.docker.com/_/node
-FROM node:22.8.0-alpine3.20
+FROM node:22.11.0-bullseye-slim
 
-# Create and change to the app directory.
+# Create and change to the app directory
 WORKDIR /app
 
-# Copy local code to the container image.
+# Copy local code to the container image
 COPY . ./
 
-# Install packages
-RUN npm i
+# Remove node_modules and package-lock.json, then install dependencies
+RUN rm -rf node_modules package-lock.json && npm install
 
+# Build the application
 RUN npm run build
