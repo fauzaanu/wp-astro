@@ -5,13 +5,10 @@ FROM node:22.8.0-alpine3.20
 # Create and change to the app directory.
 WORKDIR /app
 
-# Copy the files to the container image
-COPY package*.json ./
+# Copy local code to the container image.
+COPY . ./
 
 # Install packages
 RUN npm i
-
-# Copy local code to the container image.
-COPY . ./
 
 RUN npm run build
