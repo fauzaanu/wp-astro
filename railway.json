@@ -4,7 +4,7 @@
     "builder": "DOCKERFILE"
   },
   "deploy": {
-    "startCommand": "/bin/sh -c \"npm i && npm run build && npm run start\"",
+    "startCommand": "/bin/sh -c \"npm run start\"",
     "restartPolicyType": "ALWAYS",
     "restartPolicyMaxRetries": 10
   }

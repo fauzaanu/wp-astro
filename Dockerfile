@@ -13,3 +13,5 @@ RUN npm i
 
 # Copy local code to the container image.
 COPY . ./
+
+RUN npm run build
