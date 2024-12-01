@@ -67,6 +67,14 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                             {siteConfig.name}
                         </span>
                     </a>
+                    <form action="/search" method="get" class="hidden md:flex items-center">
+                        <input
+                            type="search"
+                            name="q"
+                            placeholder="Search posts..."
+                            class="px-4 py-1 bg-zinc-800 border border-zinc-100/10 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-100/20 w-64"
+                        />
+                    </form>
                     <div class="hidden md:flex space-x-8">
                         {siteConfig.navigation.map(item => (
                             <a 
