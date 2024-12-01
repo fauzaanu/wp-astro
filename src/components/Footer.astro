@@ -12,7 +12,7 @@ import { siteConfig } from '~/config';
             <div>
                 <h3 class="text-lg font-semibold text-zinc-100 mb-4">Quick Links</h3>
                 <ul class="space-y-2">
-                    {siteConfig.navigation.map(item => (
+                    {Array.isArray(siteConfig.navigation) && siteConfig.navigation.map(item => (
                         <li>
                             <a href={item.href} class="text-zinc-400 hover:text-zinc-100 transition-colors">{item.name}</a>
                         </li>
@@ -22,7 +22,7 @@ import { siteConfig } from '~/config';
             <div>
                 <h3 class="text-lg font-semibold text-zinc-100 mb-4">Follow Us</h3>
                 <div class="flex space-x-4">
-                    {siteConfig.social.map(platform => (
+                    {Array.isArray(siteConfig.social) && siteConfig.social.map(platform => (
                         <a href={platform.href} class="text-zinc-400 hover:text-zinc-100 transition-colors">
                             test
                         </a>
@@ -34,7 +34,7 @@ import { siteConfig } from '~/config';
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    {siteConfig.footer.links.map(link => (
+                    {Array.isArray(siteConfig.footer.links) && siteConfig.footer.links.map(link => (
                         <a href={link.href} class="hover:text-zinc-100 transition-colors">{link.name}</a>
                     ))}
                 </div>

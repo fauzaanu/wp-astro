@@ -54,7 +54,7 @@ const [posts, categories] = await Promise.all([
         <section class="space-y-4">
             <h2 class="text-2xl font-serif font-bold text-zinc-100">Categories</h2>
             <div class="flex flex-wrap gap-2">
-                {categories.map((category) => (
+                {Array.isArray(categories) && categories.map((category) => (
                     <CategoryLink category={category} />
                 ))}
             </div>
