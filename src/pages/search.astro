@@ -40,12 +40,7 @@ const posts = query ? await searchPosts(query) : [];
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map(post => (
-                <Card
-                    title={post.title.rendered}
-                    excerpt={post.excerpt.rendered}
-                    image={post._embedded?.['wp:featuredmedia']?.[0]?.source_url}
-                    href={`/posts/${post.slug}`}
-                />
+                <Card post={post} />
             ))}
         </div>
 
