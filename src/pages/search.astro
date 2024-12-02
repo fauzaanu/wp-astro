@@ -62,7 +62,7 @@ const { posts, total, totalPages, currentPage } = query ? await searchPosts(quer
                 {currentPage < totalPages && (
                     <a
                         href={`/search?q=${query}&page=${currentPage + 1}`}
-                        class="px-4 py-2 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                        class="px-4 py-2 bg-zinc-900 text-zinc-100 hover:bg-zinc-700"
                     >
                         Next
                     </a>
