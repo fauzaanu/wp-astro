@@ -2,7 +2,11 @@
 module.exports = {
     content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: {
+                'glow-gradient': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+            },
+        },
     },
     plugins: [require('daisyui')],
     daisyui: {
