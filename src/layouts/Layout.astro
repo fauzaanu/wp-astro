@@ -5,7 +5,12 @@ import {siteConfig} from '~/config';
 import { ViewTransitions } from 'astro:transitions';
 import { getCategories } from 'lib/api.js';
 
-const categories = await getCategories();
+const categories: Array<{
+    id: number;
+    name: string;
+    slug: string;
+    parent: number | null;
+}> = await getCategories();
 
 export interface Props {
     title: string;
@@ -89,6 +94,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                 <button 
                     @click="isOpen = !isOpen" 
                     class="md:hidden text-zinc-400 hover:text-zinc-100 focus:outline-none"
+                    aria-label="Toggle menu"
                 >
                     <svg 
                         class="h-6 w-6" 
@@ -241,7 +247,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
 
 <div class="max-w-7xl mx-auto">
     <main class="min-h-screen flex flex-col bg-zinc-950 relative">
-        <div class="absolute inset-0 bg-glow-gradient from-glow-start/20 via-glow-middle/20 to-glow-end blur-[120px] pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-[120px] pointer-events-none"></div>
         <div class="relative">
             <slot/>
         </div>
