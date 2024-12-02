@@ -7,17 +7,8 @@ const redis = createClient({
 
 redis.connect().catch(console.error);
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async () => {
     try {
-        // Check for API key or other authentication if needed
-        const authHeader = request.headers.get('Authorization');
-        if (!authHeader || authHeader !== `Bearer ${process.env.API_SECRET}`) {
-            return new Response(
-                JSON.stringify({ error: 'Unauthorized' }),
-                { status: 401, headers: { 'Content-Type': 'application/json' }}
-            );
-        }
-
         // Flush all data from Redis
         await redis.flushAll();
 
