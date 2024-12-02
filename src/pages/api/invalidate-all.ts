@@ -4,11 +4,18 @@ import type { APIRoute } from 'astro';
 let redis;
 
 async function getRedisClient() {
+    if (!process.env.REDIS_URL) {
+        throw new Error('REDIS_URL environment variable is required');
+    }
+    
+    console.log('Connecting to Redis at:', process.env.REDIS_URL);
+    
     if (!redis) {
         redis = createClient({
             url: process.env.REDIS_URL
         });
         await redis.connect();
+        console.log('Redis connection established');
     }
     return redis;
 }
