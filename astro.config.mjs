@@ -6,6 +6,8 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 import node from "@astrojs/node";
 
+import alpinejs from "@astrojs/alpinejs";
+
 // https://astro.build/config
 export default defineConfig({
     output: "server",
@@ -17,6 +19,5 @@ export default defineConfig({
     },
     integrations: [tailwind({
         applyBaseStyles: false,
-    })]
+    }), alpinejs()]
 });
-
