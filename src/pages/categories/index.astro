@@ -23,8 +23,13 @@ const categoriesWithCounts = await Promise.all(
             <p class="text-lg text-zinc-400">Browse all our content categories</p>
         </header>
 
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {categoriesWithCounts.map((category) => (
+        {categoriesWithCounts.length === 0 ? (
+            <div class="text-center text-zinc-400">
+                <p>No categories found.</p>
+            </div>
+        ) : (
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {categoriesWithCounts.map((category) => (
                 <a
                     href={`/categories/${category.slug}/`}
                     class="block p-6 bg-zinc-800 shadow-sm hover:shadow-zinc-700/50 hover:shadow-lg transition-shadow border border-zinc-100/10"
@@ -39,7 +44,8 @@ const categoriesWithCounts = await Promise.all(
                         <p class="text-zinc-400 line-clamp-2">{category.description}</p>
                     )}
                 </a>
-            ))}
-        </div>
+                ))}
+            </div>
+        )}
     </main>
 </Layout>
