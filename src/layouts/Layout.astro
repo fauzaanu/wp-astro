@@ -42,7 +42,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
     <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
     <meta name="generator" content={Astro.generator}/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script is:inline defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <ViewTransitions />
 
     <!-- Open Graph / Facebook -->
@@ -63,7 +63,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
 
 
     <!-- JSON-LD -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": siteConfig.organization.name,
