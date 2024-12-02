@@ -9,7 +9,7 @@ const { posts, total, totalPages, currentPage } = query ? await searchPosts(quer
 ---
 
 <Layout title={`Search Results for "${query}"`}>
-    <div class="max-w-7xl mx-auto py-12">
+    <div class="max-w-7xl mx-auto py-12 px-4 md:px-0">
         <div class="mb-8">
             <h1 class="text-3xl font-serif font-bold text-zinc-100 mb-4">Search Results</h1>
             <form action="/search" method="get" class="max-w-2xl">
