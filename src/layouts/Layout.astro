@@ -59,12 +59,12 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
         })} />
     </head>
     <body class="bg-zinc-950 text-zinc-100">
-        <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-sm border-b border-zinc-900 w-full">
+        <header class="sticky top-0 z-50 bg-zinc-100/90 backdrop-blur-sm border-b border-zinc-200 w-full">
             <div class="max-w-7xl mx-auto">
                 <nav>
                 <div class="flex justify-between items-center h-16 px-4 md:px-0">
                     <a href="/" class="flex items-center">
-                        <span class="text-2xl font-serif font-bold text-zinc-100">
+                        <span class="text-2xl font-serif font-bold text-zinc-900">
                             {siteConfig.name}
                         </span>
                     </a>
@@ -73,14 +73,14 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                             type="search"
                             name="q"
                             placeholder="Search posts..."
-                            class="px-4 py-1 bg-zinc-900 border border-zinc-100/10 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-100/20 w-64"
+                            class="px-4 py-1 bg-zinc-200 border border-zinc-300 text-zinc-900 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 w-64"
                         />
                     </form>
                     <div class="hidden md:flex space-x-8">
                         {siteConfig.navigation.map(item => (
                             <a
                                 href={item.href}
-                                class="text-zinc-300"
+                                class="text-zinc-700 hover:text-zinc-900"
                             >
                                 {item.name}
                             </a>
