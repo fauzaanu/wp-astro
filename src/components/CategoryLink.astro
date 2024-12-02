@@ -4,12 +4,12 @@ const { category, showCount = false } = Astro.props;
 
 <a 
     href={`/categories/${category.slug}/`}
-    class="inline-flex items-center gap-3 px-6 py-3 text-base font-medium bg-zinc-800 text-zinc-200 border border-zinc-100/10"
+    class="flex flex-col items-center justify-center gap-4 px-8 py-8 text-base font-medium bg-zinc-800 text-zinc-200 border border-zinc-100/10 min-w-[200px] min-h-[180px] text-center"
 >
-    <span>{category.name}</span>
+    <span class="text-xl">{category.name}</span>
     {showCount && category.count && (
-        <span class="px-2 py-1 text-sm bg-zinc-700 text-zinc-300">
-            {category.count}
+        <span class="px-4 py-2 text-base bg-zinc-700 text-zinc-300">
+            {category.count} posts
         </span>
     )}
 </a>
