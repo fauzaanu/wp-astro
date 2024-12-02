@@ -88,6 +88,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     @keydown.window.cmd.k.prevent="showSearch = true"
                     @keydown.window.ctrl.k.prevent="showSearch = true"
                     @keydown.window.escape="showSearch = false"
+                    @click.window="$event.target.closest('form') === null && showSearch = false"
                 >
                     <button 
                         x-show="!showSearch"
