@@ -3,7 +3,7 @@ import '~/assets/base.css';
 import Footer from '~/components/Footer.astro';
 import {siteConfig} from '~/config';
 import { ViewTransitions } from 'astro:transitions';
-import { getCategories } from '../lib/api';
+import { getCategories } from 'lib/api.js';
 
 const categories = await getCategories();
 
