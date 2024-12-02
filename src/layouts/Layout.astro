@@ -83,7 +83,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     </span>
                 </a>
                 <div 
-                    x-data="{ 
+                    x-data={`{ 
                         showSearch: false,
                         init() {
                             this.$watch('showSearch', value => {
@@ -96,10 +96,10 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                                 }
                             });
                         }
-                    }" 
+                    }`}
                     x-ref="searchContainer"
                     class="hidden md:block relative"
-                    @keydown.window="
+                    x-on:keydown.window={`
                         if (!showSearch && event.key.length === 1 && !event.metaKey && !event.ctrlKey && !event.altKey) {
                             event.preventDefault();
                             showSearch = true;
@@ -115,7 +115,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                         if (event.key === 'Escape') {
                             showSearch = false;
                         }
-                    "
+                    `}
                 >
                     <button 
                         x-show="!showSearch"
@@ -342,5 +342,5 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
     </main>
     <Footer/>
 </div>
-</body>
+    </body>
 </html>
