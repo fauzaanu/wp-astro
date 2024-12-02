@@ -37,24 +37,27 @@ const { posts, totalPages, currentPage } = await getPostsByCategory(category.id,
         </div>
 
         {totalPages > 1 && (
-            <div class="mt-8 flex justify-center gap-2">
+            <nav class="mt-8 flex justify-center gap-2">
                 {currentPage > 1 && (
                     <a
-                        href={`/categories/${category.slug}?page=${currentPage - 1}`}
+                        href={`/categories/${slug}?page=${currentPage - 1}`}
                         class="px-4 py-2 bg-zinc-900 text-zinc-100"
                     >
                         Previous
                     </a>
                 )}
+                <span class="px-4 py-2 text-zinc-400">
+                    Page {currentPage} of {totalPages}
+                </span>
                 {currentPage < totalPages && (
                     <a
-                        href={`/categories/${category.slug}?page=${currentPage + 1}`}
+                        href={`/categories/${slug}?page=${currentPage + 1}`}
                         class="px-4 py-2 bg-zinc-900 text-zinc-100"
                     >
                         Next
                     </a>
                 )}
-            </div>
+            </nav>
         )}
     </main>
 </Layout>
