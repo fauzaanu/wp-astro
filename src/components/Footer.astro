@@ -4,34 +4,34 @@ import { siteConfig } from '~/config';
 
 <footer class="mt-auto mb-8">
     <div class="max-w-7xl mx-auto">
-        <div class="bg-white text-zinc-800 rounded-2xl shadow-xl py-12 px-4 md:px-8">
+        <div class="bg-zinc-900/90 text-zinc-100 rounded-2xl border border-zinc-800 shadow-xl py-12 px-4 md:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="col-span-2">
-                <h2 class="text-2xl font-serif font-bold text-zinc-900 mb-4">{siteConfig.name}</h2>
-                <p class="text-zinc-600">{siteConfig.description}</p>
+                <h2 class="text-2xl font-serif font-bold text-zinc-100 mb-4">{siteConfig.name}</h2>
+                <p class="text-zinc-400">{siteConfig.description}</p>
             </div>
             <div>
-                <h3 class="text-lg font-semibold text-zinc-900 mb-4">Quick Links</h3>
+                <h3 class="text-lg font-semibold text-zinc-100 mb-4">Quick Links</h3>
                 <ul class="space-y-2">
                     {Array.isArray(siteConfig.navigation) && siteConfig.navigation.map(item => (
                         <li>
-                            <a href={item.href} class="text-zinc-600 hover:text-zinc-900">{item.name}</a>
+                            <a href={item.href} class="text-zinc-400 hover:text-zinc-100">{item.name}</a>
                         </li>
                     ))}
                 </ul>
             </div>
             <div>
-                <h3 class="text-lg font-semibold text-zinc-900 mb-4">Follow Us</h3>
+                <h3 class="text-lg font-semibold text-zinc-100 mb-4">Follow Us</h3>
                 <div class="flex space-x-4">
                     {Array.isArray(siteConfig.social) && siteConfig.social.map(platform => (
-                        <a href={platform.href} class="text-zinc-600 hover:text-zinc-900">
+                        <a href={platform.href} class="text-zinc-400 hover:text-zinc-100">
                             test
                         </a>
                     ))}
                 </div>
             </div>
         </div>
-        <div class="border-t border-zinc-200 mt-8 pt-8 text-sm text-zinc-800">
+        <div class="border-t border-zinc-800 mt-8 pt-8 text-sm text-zinc-400">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
