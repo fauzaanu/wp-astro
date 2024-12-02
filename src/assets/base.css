@@ -15,11 +15,11 @@ p {
     width: 12px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #42536b;
+    background: #3f3f46; /* zinc-700 */
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #34445a;
+    background: #52525b; /* zinc-600 */
 }
 ::-webkit-scrollbar-track {
-    background-color: #1f2937;
+    background-color: #18181b; /* zinc-900 */
 }
