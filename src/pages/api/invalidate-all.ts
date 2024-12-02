@@ -2,7 +2,7 @@ import { createClient } from 'redis';
 import type { APIRoute } from 'astro';
 
 const redis = createClient({
-    url: process.env.REDIS_URL || 'redis://localhost:6379',
+    url: process.env.REDIS_URL,
 });
 
 redis.connect().catch(console.error);
