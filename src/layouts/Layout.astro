@@ -68,12 +68,12 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                             {siteConfig.name}
                         </span>
                     </a>
-                    <form action="/search" method="get" class="hidden md:flex items-center">
+                    <form action="/search" method="get" class="hidden md:flex items-center" autocomplete="off">
                         <input
                             type="search"
                             name="q"
                             placeholder="Search posts..."
-                            class="px-4 py-1 bg-zinc-200 border border-zinc-300 text-zinc-900 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 w-64"
+                            class="px-4 py-1  w-full bg-zinc-200 border border-zinc-300 text-zinc-900 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 w-64"
                         />
                     </form>
                     <div class="hidden md:flex space-x-8">
