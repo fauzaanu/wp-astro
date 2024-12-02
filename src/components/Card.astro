@@ -37,8 +37,8 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="group bg-zinc-800/50 overflow-hidden border border-zinc-700 rounded-lg transition-colors hover:bg-zinc-800/70">
-        <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
+    <article class="group bg-zinc-800/50 overflow-hidden border border-zinc-700 rounded-lg transition-colors hover:bg-zinc-800/70 flex flex-col">
+        <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden relative">
             <Image
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
                 alt={post.title?.rendered}
