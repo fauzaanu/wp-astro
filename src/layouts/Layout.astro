@@ -87,6 +87,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     class="hidden md:block relative"
                     @keydown.window.cmd.k.prevent="showSearch = true"
                     @keydown.window.ctrl.k.prevent="showSearch = true"
+                    @keydown.window.escape="showSearch = false"
                 >
                     <button 
                         x-show="!showSearch"
@@ -107,7 +108,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                         x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100"
                         class="fixed inset-0 bg-zinc-900/80 backdrop-blur-sm"
-                        @click="showSearch = false"
+                        @click.self="showSearch = false"
                     ></div>
 
                     <!-- Search form -->
