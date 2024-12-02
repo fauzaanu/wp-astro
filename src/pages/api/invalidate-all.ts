@@ -8,14 +8,31 @@ async function getRedisClient() {
         throw new Error('REDIS_URL environment variable is required');
     }
     
-    console.log('Connecting to Redis at:', process.env.REDIS_URL);
+    console.log('Attempting to connect to Redis at:', process.env.REDIS_URL);
     
     if (!redis) {
         redis = createClient({
-            url: process.env.REDIS_URL
+            url: process.env.REDIS_URL,
+            socket: {
+                reconnectStrategy: (retries) => {
+                    console.log(`Reconnection attempt ${retries}`);
+                    return Math.min(retries * 100, 3000);
+                }
+            }
         });
-        await redis.connect();
-        console.log('Redis connection established');
+
+        redis.on('error', (err) => console.error('Redis Client Error:', err));
+        redis.on('connect', () => console.log('Redis Client Connected'));
+        redis.on('ready', () => console.log('Redis Client Ready'));
+        redis.on('reconnecting', () => console.log('Redis Client Reconnecting'));
+
+        try {
+            await redis.connect();
+            console.log('Redis connection established successfully');
+        } catch (error) {
+            console.error('Failed to connect to Redis:', error);
+            throw error;
+        }
     }
     return redis;
 }
