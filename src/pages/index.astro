@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '~/components/Card.astro';
 import CategoryLink from '~/components/CategoryLink.astro';
+import { Image } from 'astro:assets';
 import {getPosts, getCategories} from '../../lib/api';
 import {siteConfig} from '~/config';
 
@@ -20,13 +21,14 @@ const [posts, categories] = await Promise.all([
                 {posts.length > 0 && (
                         <div class="relative group overflow-hidden shadow-lg border border-zinc-100/10">
                             <a href={`/posts/${posts[0].slug}/`} class="block aspect-[16/9] lg:aspect-[16/10]">
-                                <img
-                                        src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
-                                        alt={posts[0].title?.rendered}
-                                        class="w-full h-full object-cover"
-                                        srcset={`${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 1200w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 800w, ${posts[0]._embedded['wp:featuredmedia']['0']?.source_url} 400w`}
-                                        sizes="(max-width: 1200px) 100vw, 1200px"
-                                        loading="eager"
+                                <Image
+                                    src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}
+                                    alt={posts[0].title?.rendered}
+                                    class="w-full h-full object-cover"
+                                    width={1200}
+                                    height={675}
+                                    quality={80}
+                                    loading="eager"
                                 />
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                                     <div class="absolute bottom-0 left-0 right-0 p-6">
