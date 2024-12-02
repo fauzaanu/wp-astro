@@ -18,7 +18,7 @@ const [posts, categories] = await Promise.all([
             {/* Featured Post */}
             <div class="w-full md:w-1/2">
                 {posts.length > 0 && (
-                        <div class="relative group overflow-hidden shadow-lg transition-transform hover:scale-[1.02] border border-zinc-100/10">
+                        <div class="relative group overflow-hidden shadow-lg border border-zinc-100/10">
                             <a href={`/posts/${posts[0].slug}/`} class="block aspect-[16/9] lg:aspect-[16/10]">
                                 <img
                                         src={posts[0]._embedded['wp:featuredmedia']['0']?.source_url}

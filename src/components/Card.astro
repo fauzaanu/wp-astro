@@ -18,7 +18,7 @@ const { post, variant = 'default' } = Astro.props;
             <h3 class="font-medium text-zinc-100">
                 <a 
                     href={`/posts/${post.slug}/`} 
-                    class="truncate hover:text-zinc-300 transition-colors block max-w-full" 
+                    class="truncate block max-w-full" 
                     set:html={post.title?.rendered || 'Untitled Post'} 
                 />
             </h3>
@@ -32,12 +32,12 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="bg-zinc-800 overflow-hidden border border-zinc-100/10 shadow-lg hover:shadow-zinc-700/50 transition-all duration-300 hover:-translate-y-1">
+    <article class="bg-zinc-800 overflow-hidden border border-zinc-100/10 shadow-lg">
         <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
             <img
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
                 alt={post.title?.rendered}
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                class="w-full h-full object-cover"
             />
         </a>
         <div class="p-5">
@@ -53,14 +53,14 @@ const { post, variant = 'default' } = Astro.props;
             <h3 class="text-lg font-bold text-zinc-100 mb-3">
                 <a 
                     href={`/posts/${post.slug}/`}
-                    class="hover:text-zinc-300 transition-colors truncate leading-snug block"
+                    class="truncate leading-snug block"
                     set:html={post.title?.rendered || 'Untitled Post'} 
                 />
             </h3>
             <a href={`/posts/${post.slug}/`}
-               class="inline-flex items-center text-zinc-300 hover:text-zinc-100 text-sm font-semibold group mt-4">
+               class="inline-flex items-center text-zinc-300 text-sm font-semibold mt-4">
                 Read
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </a>

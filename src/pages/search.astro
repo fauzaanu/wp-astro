@@ -23,7 +23,7 @@ const { posts, total, totalPages, currentPage } = query ? await searchPosts(quer
                     />
                     <button
                         type="submit"
-                        class="px-6 py-2 bg-zinc-800 border border-zinc-100/10 text-zinc-100 hover:bg-zinc-700 transition-colors"
+                        class="px-6 py-2 bg-zinc-800 border border-zinc-100/10 text-zinc-100"
                     >
                         Search
                     </button>
@@ -54,7 +54,7 @@ const { posts, total, totalPages, currentPage } = query ? await searchPosts(quer
                 {currentPage > 1 && (
                     <a
                         href={`/search?q=${query}&page=${currentPage - 1}`}
-                        class="px-4 py-2 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                        class="px-4 py-2 bg-zinc-800 text-zinc-100"
                     >
                         Previous
                     </a>

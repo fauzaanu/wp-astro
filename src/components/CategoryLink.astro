@@ -4,7 +4,7 @@ const { category, showCount = false } = Astro.props;
 
 <a 
     href={`/categories/${category.slug}/`}
-    class="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium bg-zinc-800 text-zinc-200 hover:bg-zinc-700 transition-colors border border-zinc-100/10"
+    class="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium bg-zinc-800 text-zinc-200 border border-zinc-100/10"
 >
     <span>{category.name}</span>
     {showCount && category.count && (

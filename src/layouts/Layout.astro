@@ -64,7 +64,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                 <nav class="px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <a href="/" class="flex items-center">
-                        <span class="text-2xl font-serif font-bold text-zinc-100 hover:text-zinc-200 transition-colors">
+                        <span class="text-2xl font-serif font-bold text-zinc-100">
                             {siteConfig.name}
                         </span>
                     </a>
@@ -80,7 +80,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                         {siteConfig.navigation.map(item => (
                             <a 
                                 href={item.href} 
-                                class="text-zinc-300 hover:text-zinc-100 transition-colors"
+                                class="text-zinc-300"
                             >
                                 {item.name}
                             </a>

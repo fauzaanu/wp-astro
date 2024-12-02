@@ -14,7 +14,7 @@ import { siteConfig } from '~/config';
                 <ul class="space-y-2">
                     {Array.isArray(siteConfig.navigation) && siteConfig.navigation.map(item => (
                         <li>
-                            <a href={item.href} class="text-zinc-400 hover:text-zinc-100 transition-colors">{item.name}</a>
+                            <a href={item.href} class="text-zinc-400">{item.name}</a>
                         </li>
                     ))}
                 </ul>
@@ -23,7 +23,7 @@ import { siteConfig } from '~/config';
                 <h3 class="text-lg font-semibold text-zinc-100 mb-4">Follow Us</h3>
                 <div class="flex space-x-4">
                     {Array.isArray(siteConfig.social) && siteConfig.social.map(platform => (
-                        <a href={platform.href} class="text-zinc-400 hover:text-zinc-100 transition-colors">
+                        <a href={platform.href} class="text-zinc-400">
                             test
                         </a>
                     ))}
@@ -35,7 +35,7 @@ import { siteConfig } from '~/config';
                 <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     {Array.isArray(siteConfig.footer.links) && siteConfig.footer.links.map(link => (
-                        <a href={link.href} class="hover:text-zinc-100 transition-colors">{link.name}</a>
+                        <a href={link.href}>{link.name}</a>
                     ))}
                 </div>
             </div>
