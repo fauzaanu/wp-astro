@@ -32,7 +32,7 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="bg-zinc-800 overflow-hidden border border-zinc-100/10 shadow-lg">
+    <article class="bg-zinc-900 overflow-hidden border border-zinc-100/10 shadow-lg">
         <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
             <img
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
