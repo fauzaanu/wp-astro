@@ -8,9 +8,9 @@ module.exports = {
             },
             colors: {
                 glow: {
-                    start: '#a855f7', // purple-500
-                    middle: '#581c87', // purple-900
-                    end: '#09090b', // zinc-950
+                    start: '#55f7c4', // purple-500
+                    middle: '#55f7c4', // purple-900
+                    end: '#000000', // zinc-950
                 },
             },
         },
