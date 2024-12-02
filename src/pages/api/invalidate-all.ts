@@ -1,16 +1,23 @@
 import { createClient } from 'redis';
 import type { APIRoute } from 'astro';
 
-const redis = createClient({
-    url: process.env.REDIS_URL,
-});
+let redis;
 
-redis.connect().catch(console.error);
+async function getRedisClient() {
+    if (!redis) {
+        redis = createClient({
+            url: process.env.REDIS_URL
+        });
+        await redis.connect();
+    }
+    return redis;
+}
 
 export const POST: APIRoute = async () => {
     try {
+        const client = await getRedisClient();
         // Flush all data from Redis
-        await redis.flushAll();
+        await client.flushAll();
 
         return new Response(
             JSON.stringify({ message: 'All cache cleared successfully' }),
