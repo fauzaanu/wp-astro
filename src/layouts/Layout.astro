@@ -1,7 +1,8 @@
 ---
 import '~/assets/base.css';
 import Footer from '~/components/Footer.astro';
-import { siteConfig } from '~/config';
+import {siteConfig} from '~/config';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
     title: string;
@@ -22,85 +23,87 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
 
 <!DOCTYPE html>
 <html lang={siteConfig.defaultLanguage}>
-    <head>
-        <!-- Basic Meta Tags -->
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{fullTitle}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalURL} />
-        <meta name="author" content={siteConfig.author.name} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{fullTitle}</title>
+    <meta name="description" content={description}/>
+    <link rel="canonical" href={canonicalURL}/>
+    <meta name="author" content={siteConfig.author.name}/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="generator" content={Astro.generator}/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <ViewTransitions />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content={siteConfig.openGraph.type} />
-        <meta property="og:site_name" content={siteConfig.openGraph.siteName} />
-        <meta property="og:title" content={fullTitle} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
-        <meta property="og:url" content={canonicalURL} />
-        <meta property="og:locale" content={siteConfig.openGraph.locale} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={siteConfig.openGraph.type}/>
+    <meta property="og:site_name" content={siteConfig.openGraph.siteName}/>
+    <meta property="og:title" content={fullTitle}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:image" content={image}/>
+    <meta property="og:url" content={canonicalURL}/>
+    <meta property="og:locale" content={siteConfig.openGraph.locale}/>
 
-        <!-- Twitter -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={fullTitle} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content={fullTitle}/>
+    <meta name="twitter:description" content={description}/>
+    <meta name="twitter:image" content={image}/>
 
-        <!-- JSON-LD -->
-        <script type="application/ld+json" set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": siteConfig.organization.name,
-            "url": siteConfig.siteUrl,
-            "logo": siteConfig.organization.logo,
-            "sameAs": siteConfig.organization.sameAs
-        })} />
-    </head>
-    <body class="bg-zinc-950 text-zinc-100">
-        <header class="sticky top-0 z-50 bg-zinc-900/90 backdrop-blur-sm border-b border-zinc-800 w-full">
-            <div class="max-w-7xl mx-auto">
-                <nav>
-                <div class="flex justify-between items-center h-16 px-4 md:px-0">
-                    <a href="/" class="flex items-center">
+
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": siteConfig.organization.name,
+        "url": siteConfig.siteUrl,
+        "logo": siteConfig.organization.logo,
+        "sameAs": siteConfig.organization.sameAs
+    })}/>
+</head>
+<body class="bg-zinc-950 text-zinc-100 pb-5">
+<header class="sticky top-0 z-50 bg-zinc-900/90 backdrop-blur-sm border-b border-zinc-800 w-full">
+    <div class="max-w-7xl mx-auto">
+        <nav>
+            <div class="flex justify-between items-center h-16 px-4 lg:px-0">
+                <a href="/" class="flex items-center">
                         <span class="text-2xl font-serif font-bold text-zinc-100">
                             {siteConfig.name}
                         </span>
-                    </a>
-                    <form action="/search" method="get" class="hidden md:flex items-center" autocomplete="off">
-                        <input
+                </a>
+                <form action="/search" method="get" class="hidden md:flex items-center" autocomplete="off">
+                    <input
                             type="search"
                             name="q"
                             placeholder="Search posts..."
                             class="px-4 py-1 w-full bg-zinc-800 border border-zinc-700 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 w-64 rounded-lg"
-                        />
-                    </form>
-                    <div class="hidden md:flex space-x-8">
-                        {siteConfig.navigation.map(item => (
+                    />
+                </form>
+                <div class="hidden md:flex space-x-8">
+                    {siteConfig.navigation.map(item => (
                             <a
-                                href={item.href}
-                                class="text-zinc-400 hover:text-zinc-100"
+                                    href={item.href}
+                                    class="text-zinc-400 hover:text-zinc-100"
                             >
                                 {item.name}
                             </a>
-                        ))}
-                    </div>
+                    ))}
                 </div>
-            </nav>
             </div>
-        </header>
+        </nav>
+    </div>
+</header>
 
-        <div class="max-w-7xl mx-auto">
-            <main class="min-h-screen flex flex-col bg-zinc-950 relative">
-                <div class="absolute inset-0 bg-glow-gradient from-glow-start/20 via-glow-middle/20 to-glow-end blur-[120px] pointer-events-none"></div>
-                <div class="relative">
-                    <slot />
-                </div>
-            </main>
-
-                <Footer />
-            </div>
-        </body>
+<div class="max-w-7xl mx-auto">
+    <main class="min-h-screen flex flex-col bg-zinc-950 relative">
+        <div class="absolute inset-0 bg-glow-gradient from-glow-start/20 via-glow-middle/20 to-glow-end blur-[120px] pointer-events-none"></div>
+        <div class="relative">
+            <slot/>
+        </div>
+    </main>
+    <Footer/>
+</div>
+</body>
 </html>
