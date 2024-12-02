@@ -7,7 +7,43 @@ h2 {
 }
 
 p {
-    @apply mt-2;
+    @apply mt-6 leading-relaxed text-zinc-300;
+}
+
+article p {
+    @apply text-lg;
+}
+
+article img {
+    @apply my-8 w-full rounded-lg border border-zinc-800;
+}
+
+article h2 {
+    @apply mt-12 mb-6 text-3xl font-bold text-zinc-100;
+}
+
+article h3 {
+    @apply mt-8 mb-4 text-2xl font-bold text-zinc-200;
+}
+
+article ul, article ol {
+    @apply my-6 ml-6 space-y-2 text-zinc-300;
+}
+
+article ul {
+    @apply list-disc;
+}
+
+article ol {
+    @apply list-decimal;
+}
+
+article a {
+    @apply text-blue-400 hover:text-blue-300 underline;
+}
+
+article blockquote {
+    @apply my-6 border-l-4 border-zinc-700 pl-4 italic text-zinc-400;
 }
 
 /* Scroll bar */

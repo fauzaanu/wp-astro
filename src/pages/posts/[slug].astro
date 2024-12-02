@@ -52,8 +52,10 @@ const { title, content, meta, _embedded} = post;
             />
         </figure>
 
-        <div class="prose prose-lg max-w-none prose-invert prose-zinc">
-            <Fragment set:html={content.rendered} />
+        <div class="max-w-3xl mx-auto">
+            <div class="article-content">
+                <Fragment set:html={content.rendered} />
+            </div>
         </div>
     </article>
 </Layout>
