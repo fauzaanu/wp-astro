@@ -99,15 +99,17 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     }" 
                     x-ref="searchContainer"
                     class="hidden md:block relative"
-                    @keydown.window.prevent="
-                        if (!showSearch && event.key.length === 1) {
+                    @keydown.window="
+                        if (!showSearch && event.key.length === 1 && !event.metaKey && !event.ctrlKey && !event.altKey) {
+                            event.preventDefault();
                             showSearch = true;
                             $nextTick(() => {
                                 $refs.searchInput.value = event.key;
-                                query = event.key;
+                                $refs.searchInput.dispatchEvent(new Event('input'));
                             });
                         }
                         if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+                            event.preventDefault();
                             showSearch = true;
                         }
                         if (event.key === 'Escape') {
