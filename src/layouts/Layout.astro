@@ -152,8 +152,6 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                         x-transition:enter-end="opacity-100 transform scale-100"
                         x-effect="if(showSearch) $nextTick(() => $refs.searchInput.focus())"
                         x-data="{ query: '' }"
-                        x-ref="searchForm"
-                        @submit.prevent="if(query.trim()) window.location.href = '/search?q=' + encodeURIComponent(query)"
                     >
                         <div class="relative">
                             <input
@@ -164,7 +162,7 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                                 @keydown.escape="showSearch = false"
                                 x-ref="searchInput"
                                 x-model="query"
-                                @input="if(query.trim()) window.location.href = '/search?q=' + encodeURIComponent(query)"
+                                
                             />
                             <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-3.5 h-5 w-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
