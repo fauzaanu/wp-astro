@@ -73,14 +73,14 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
     })}/>
 </head>
 <body class="bg-zinc-950 text-zinc-100 pb-5" x-data="{ isOpen: false }" :class="{ 'overflow-hidden': isOpen }">
-<header class="sticky top-0 z-50 bg-zinc-900/90 backdrop-blur-sm border-b border-zinc-800 w-full">
-    <div class="max-w-7xl mx-auto">
-        <nav>
+<header class="sticky top-0 z-50 w-full">
+    <div class="bg-zinc-900/90 backdrop-blur-sm border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-center h-16 px-4 lg:px-0">
                 <a href="/" class="flex items-center">
-                        <span class="text-2xl font-serif font-bold text-zinc-100">
-                            {siteConfig.name}
-                        </span>
+                    <span class="text-2xl font-serif font-bold text-zinc-100">
+                        {siteConfig.name}
+                    </span>
                 </a>
                 <div 
                     x-data="{ showSearch: false }" 
@@ -145,51 +145,57 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     </svg>
                 </button>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    {siteConfig.navigation.map(item => (
-                        <a
-                            href={item.href}
-                            class="text-zinc-400 hover:text-zinc-100"
-                        >
-                            {item.name}
-                        </a>
-                    ))}
-                    
-                    {/* Categories Menu */}
-                    {categories
-                        .filter(category => !category.parent)
-                        .map(parentCategory => (
-                            <div class="relative group">
-                                <a 
-                                    href={`/categories/${parentCategory.slug}`}
-                                    class="text-zinc-400 hover:text-zinc-100"
-                                >
-                                    {parentCategory.name}
-                                </a>
-                                {categories.some(cat => cat.parent === parentCategory.id) && (
-                                    <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-zinc-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                        <div class="py-1" role="menu">
-                                            {categories
-                                                .filter(cat => cat.parent === parentCategory.id)
-                                                .map(childCategory => (
-                                                    <a
-                                                        href={`/categories/${childCategory.slug}`}
-                                                        class="block px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
-                                                        role="menuitem"
-                                                    >
-                                                        {childCategory.name}
-                                                    </a>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        ))
-                    }
-                </div>
             </div>
-        </nav>
+        </div>
+    </div>
+    
+    <!-- Second level navigation with white background -->
+    <div class="hidden md:block bg-white/90 backdrop-blur-sm border-b border-zinc-200">
+        <div class="max-w-7xl mx-auto">
+            <nav class="flex items-center space-x-8 px-4 lg:px-0 h-12">
+                {siteConfig.navigation.map(item => (
+                    <a
+                        href={item.href}
+                        class="text-zinc-900 hover:text-zinc-600"
+                    >
+                        {item.name}
+                    </a>
+                ))}
+                
+                {/* Categories Menu */}
+                {categories
+                    .filter(category => !category.parent)
+                    .map(parentCategory => (
+                        <div class="relative group">
+                            <a 
+                                href={`/categories/${parentCategory.slug}`}
+                                class="text-zinc-900 hover:text-zinc-600"
+                            >
+                                {parentCategory.name}
+                            </a>
+                            {categories.some(cat => cat.parent === parentCategory.id) && (
+                                <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <div class="py-1" role="menu">
+                                        {categories
+                                            .filter(cat => cat.parent === parentCategory.id)
+                                            .map(childCategory => (
+                                                <a
+                                                    href={`/categories/${childCategory.slug}`}
+                                                    class="block px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50"
+                                                    role="menuitem"
+                                                >
+                                                    {childCategory.name}
+                                                </a>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))
+                }
+            </nav>
+        </div>
     </div>
 
     <!-- Mobile menu overlay -->
