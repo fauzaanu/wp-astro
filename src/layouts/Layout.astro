@@ -83,12 +83,25 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     </span>
                 </a>
                 <div 
-                    x-data="{ showSearch: false }" 
+                    x-data="{ 
+                        showSearch: false,
+                        init() {
+                            this.$watch('showSearch', value => {
+                                if (value) {
+                                    document.addEventListener('click', (e) => {
+                                        if (!this.$refs.searchContainer.contains(e.target)) {
+                                            this.showSearch = false;
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }" 
+                    x-ref="searchContainer"
                     class="hidden md:block relative"
                     @keydown.window.cmd.k.prevent="showSearch = true"
                     @keydown.window.ctrl.k.prevent="showSearch = true"
                     @keydown.window.escape="showSearch = false"
-                    @click.window="$event.target.closest('form') === null && showSearch = false"
                 >
                     <button 
                         x-show="!showSearch"
