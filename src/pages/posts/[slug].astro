@@ -23,9 +23,9 @@ const { title, content, meta, _embedded} = post;
 ---
 
 <Layout title={title.rendered}>
-    <article class="py-12 px-4 md:px-0">
+    <article class="py-12 px-4 lg:px-0">
         <header class="mb-12">
-            <h1 class="text-4xl font-serif font-bold text-zinc-100 mb-3" set:html={title.rendered} />
+            <h1 class="text-4xl font-serif font-bold text-zinc-100 mb-3 text-center" set:html={title.rendered} />
             {meta.author && (
                 <div class="text-zinc-400 flex gap-2 items-center">
                     By <span class="font-medium">{meta.author}</span> •
