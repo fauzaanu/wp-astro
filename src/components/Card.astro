@@ -10,11 +10,11 @@ const { post, variant = 'default' } = Astro.props;
 ---
 
 {variant === 'compact' ? (
-    <article class="flex space-x-4 items-start group">
+    <article class="flex space-x-4 items-start group hover:bg-zinc-800/50 p-3 rounded-lg transition-colors">
         <Image
             src={post._embedded['wp:featuredmedia']['0']?.source_url}
             alt={post.title?.rendered}
-            class="w-24 h-24 object-cover border border-zinc-100/10"
+            class="w-24 h-24 object-cover border border-zinc-700 rounded-md"
             width={96}
             height={96}
             quality={80}
@@ -23,11 +23,11 @@ const { post, variant = 'default' } = Astro.props;
             <h3 class="font-medium text-zinc-100">
                 <a 
                     href={`/posts/${post.slug}/`} 
-                    class="truncate block max-w-full" 
+                    class="truncate block max-w-full hover:text-zinc-300 transition-colors" 
                     set:html={post.title?.rendered || 'Untitled Post'} 
                 />
             </h3>
-            <p class="text-sm text-zinc-400 mt-1 truncate">
+            <time class="text-sm text-zinc-400 mt-1 block">
                 {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
@@ -37,37 +37,35 @@ const { post, variant = 'default' } = Astro.props;
         </div>
     </article>
 ) : (
-    <article class="bg-zinc-900 overflow-hidden border border-zinc-100/10 shadow-lg">
+    <article class="group bg-zinc-800/50 overflow-hidden border border-zinc-700 rounded-lg transition-colors hover:bg-zinc-800/70">
         <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
             <Image
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
                 alt={post.title?.rendered}
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 width={800}
                 height={500}
                 quality={80}
             />
         </a>
-        <div class="p-5">
-            <div class="mb-4">
-                <span class="text-xs font-medium text-zinc-400 tracking-wider">
-                    {new Date(post.date).toLocaleDateString('en-US', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric',
-                    })}
-                </span>
-            </div>
-            <h3 class="text-lg font-bold text-zinc-100 mb-3">
+        <div class="p-6">
+            <time class="text-sm text-zinc-400 tracking-wider">
+                {new Date(post.date).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                })}
+            </time>
+            <h3 class="text-lg font-bold text-zinc-100 mt-3 mb-4">
                 <a 
                     href={`/posts/${post.slug}/`}
-                    class="truncate leading-snug block"
+                    class="hover:text-zinc-300 transition-colors leading-snug block"
                     set:html={post.title?.rendered || 'Untitled Post'} 
                 />
             </h3>
             <a href={`/posts/${post.slug}/`}
-               class="inline-flex items-center text-zinc-300 text-sm font-semibold mt-4">
-                Read
+               class="inline-flex items-center text-zinc-400 text-sm font-medium hover:text-zinc-300 transition-colors">
+                Read article
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
