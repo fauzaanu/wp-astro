@@ -99,9 +99,21 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     }" 
                     x-ref="searchContainer"
                     class="hidden md:block relative"
-                    @keydown.window.cmd.k.prevent="showSearch = true"
-                    @keydown.window.ctrl.k.prevent="showSearch = true"
-                    @keydown.window.escape="showSearch = false"
+                    @keydown.window.prevent="
+                        if (!showSearch && event.key.length === 1) {
+                            showSearch = true;
+                            $nextTick(() => {
+                                $refs.searchInput.value = event.key;
+                                query = event.key;
+                            });
+                        }
+                        if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+                            showSearch = true;
+                        }
+                        if (event.key === 'Escape') {
+                            showSearch = false;
+                        }
+                    "
                 >
                     <button 
                         x-show="!showSearch"
