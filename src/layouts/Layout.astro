@@ -82,14 +82,41 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                             {siteConfig.name}
                         </span>
                 </a>
-                <form action="/search" method="get" class="hidden md:flex items-center" autocomplete="off">
-                    <input
+                <div 
+                    x-data="{ showSearch: false }" 
+                    class="hidden md:block"
+                >
+                    <button 
+                        x-show="!showSearch"
+                        @click="showSearch = true" 
+                        class="text-zinc-400 hover:text-zinc-100 focus:outline-none"
+                        aria-label="Open search"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                    <form 
+                        x-show="showSearch"
+                        @click.away="showSearch = false"
+                        action="/search" 
+                        method="get" 
+                        class="flex items-center"
+                        autocomplete="off"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform scale-95"
+                        x-transition:enter-end="opacity-100 transform scale-100"
+                    >
+                        <input
                             type="search"
                             name="q"
                             placeholder="Search posts..."
                             class="px-4 py-1 w-full bg-zinc-800 border border-zinc-700 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 w-64 rounded-lg"
-                    />
-                </form>
+                            @keydown.escape="showSearch = false"
+                            autofocus
+                        />
+                    </form>
+                </div>
                 <!-- Mobile menu button -->
                 <button 
                     @click="isOpen = !isOpen" 
