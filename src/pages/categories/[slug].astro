@@ -25,8 +25,8 @@ const { posts, totalPages, currentPage } = await getPostsByCategory(category.id,
 
 <Layout title={`${category.name} - Posts`}>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-zinc-900">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-serif font-bold text-zinc-100 mb-4">{category.name}</h1>
+        <header class="mb-12">
+            <h1 class="text-4xl font-serif font-bold text-zinc-100 mb-2">{category.name}</h1>
             <p class="text-lg text-zinc-400">{category.description}</p>
         </header>
 
