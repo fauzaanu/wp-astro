@@ -4,7 +4,8 @@ import Card from '~/components/Card.astro';
 import { searchPosts } from 'lib/api.js';
 
 const query = Astro.url.searchParams.get('q') || '';
-const posts = query ? await searchPosts(query) : [];
+const page = parseInt(Astro.url.searchParams.get('page') || '1');
+const { posts, total, totalPages, currentPage } = query ? await searchPosts(query, page) : { posts: [], total: 0, totalPages: 0, currentPage: 1 };
 ---
 
 <Layout title={`Search Results for "${query}"`}>
@@ -46,6 +47,27 @@ const posts = query ? await searchPosts(query) : [];
 
         {query && posts.length === 0 && (
             <p class="text-zinc-400">No posts found matching your search.</p>
+        )}
+
+        {totalPages > 1 && (
+            <div class="mt-8 flex justify-center gap-2">
+                {currentPage > 1 && (
+                    <a
+                        href={`/search?q=${query}&page=${currentPage - 1}`}
+                        class="px-4 py-2 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                    >
+                        Previous
+                    </a>
+                )}
+                {currentPage < totalPages && (
+                    <a
+                        href={`/search?q=${query}&page=${currentPage + 1}`}
+                        class="px-4 py-2 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                    >
+                        Next
+                    </a>
+                )}
+            </div>
         )}
     </div>
 </Layout>

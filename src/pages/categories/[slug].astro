@@ -19,7 +19,8 @@ if (!category) {
     return new Response('Category not found', { status: 404 });
 }
 
-const posts = await getPostsByCategory(category.id);
+const page = parseInt(Astro.url.searchParams.get('page') || '1');
+const { posts, totalPages, currentPage } = await getPostsByCategory(category.id, page);
 ---
 
 <Layout title={`${category.name} - Posts`}>
@@ -34,5 +35,26 @@ const posts = await getPostsByCategory(category.id);
                 <Card post={post} />
             ))}
         </div>
+
+        {totalPages > 1 && (
+            <div class="mt-8 flex justify-center gap-2">
+                {currentPage > 1 && (
+                    <a
+                        href={`/categories/${category.slug}?page=${currentPage - 1}`}
+                        class="px-4 py-2 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                    >
+                        Previous
+                    </a>
+                )}
+                {currentPage < totalPages && (
+                    <a
+                        href={`/categories/${category.slug}?page=${currentPage + 1}`}
+                        class="px-4 py-2 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+                    >
+                        Next
+                    </a>
+                )}
+            </div>
+        )}
     </main>
 </Layout>
