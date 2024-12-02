@@ -35,7 +35,7 @@ A modern headless WordPress blog built with Astro, featuring a clean UI, Redis c
 
 ## How it works
 
-- When requests hit the websites
+- When requests hit the website
   - We first check Redis for a cached version of the page
   - If not found, we fetch the page from the WordPress API
   - We then cache the page in Redis for future requests
