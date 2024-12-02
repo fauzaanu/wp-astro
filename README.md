@@ -23,8 +23,8 @@ A modern headless WordPress blog built with Astro, featuring a clean UI, Redis c
 
 ## Prerequisites
 
-- Docker and Docker Compose
-- Node.js 18+
+- Node.js 22.11.0
+- Redis
 - WordPress instance with:
   - Featured images for all posts
   - Permalink structure set to "Post name"
