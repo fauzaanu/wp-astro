@@ -24,7 +24,16 @@ export const siteConfig = {
     } as const,
     navigation: [
         { name: "Home", href: "/" },
-        { name: "Categories", href: "/categories" },
+        { 
+            name: "Categories",
+            href: "/categories",
+            items: [
+                { name: "Technology", href: "/categories/technology" },
+                { name: "Business", href: "/categories/business" },
+                { name: "Science", href: "/categories/science" },
+                { name: "Health", href: "/categories/health" }
+            ]
+        },
         { name: "About", href: "/about" }
     ],
     social: [
