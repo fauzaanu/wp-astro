@@ -3,6 +3,9 @@ import '~/assets/base.css';
 import Footer from '~/components/Footer.astro';
 import {siteConfig} from '~/config';
 import { ViewTransitions } from 'astro:transitions';
+import { getCategories } from '../lib/api';
+
+const categories = await getCategories();
 
 export interface Props {
     title: string;
@@ -82,14 +85,38 @@ const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.n
                     />
                 </form>
                 <div class="hidden md:flex space-x-8">
-                    {siteConfig.navigation.map(item => (
+                    {siteConfig.navigation.map(item => {
+                        if (item.name === "Categories") {
+                            return (
+                                <div class="relative group">
+                                    <a href={item.href} class="text-zinc-400 hover:text-zinc-100">
+                                        {item.name}
+                                    </a>
+                                    <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-zinc-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                        <div class="py-1" role="menu">
+                                            {categories.map((category) => (
+                                                <a
+                                                    href={`/categories/${category.slug}`}
+                                                    class="block px-4 py-2 text-sm text-zinc-300 hover:bg-zinc-700"
+                                                    role="menuitem"
+                                                >
+                                                    {category.name}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        }
+                        return (
                             <a
-                                    href={item.href}
-                                    class="text-zinc-400 hover:text-zinc-100"
+                                href={item.href}
+                                class="text-zinc-400 hover:text-zinc-100"
                             >
                                 {item.name}
                             </a>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </nav>
