@@ -38,7 +38,7 @@ const { post, variant = 'default' } = Astro.props;
     </article>
 ) : (
     <article class="group bg-zinc-800/50 overflow-hidden border border-zinc-700 rounded-lg transition-colors hover:bg-zinc-800/70">
-        <a href={`/posts/${post.slug}/`} class="aspect-[16/10] block">
+        <div class="aspect-[16/10]">
             <Image
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
                 alt={post.title?.rendered}
@@ -47,7 +47,7 @@ const { post, variant = 'default' } = Astro.props;
                 height={500}
                 quality={80}
             />
-        </a>
+        </div>
         <div class="p-6">
             <time class="text-sm text-zinc-400 tracking-wider">
                 {new Date(post.date).toLocaleDateString('en-US', {
