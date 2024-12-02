@@ -6,6 +6,13 @@ module.exports = {
             backgroundImage: {
                 'glow-gradient': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
             },
+            colors: {
+                glow: {
+                    start: '#a855f7', // purple-500
+                    middle: '#581c87', // purple-900
+                    end: '#09090b', // zinc-950
+                },
+            },
         },
     },
     plugins: [require('daisyui')],
