@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 export interface Props {
     post: any;
     variant?: 'default' | 'compact';
@@ -9,10 +11,13 @@ const { post, variant = 'default' } = Astro.props;
 
 {variant === 'compact' ? (
     <article class="flex space-x-4 items-start group">
-        <img
+        <Image
             src={post._embedded['wp:featuredmedia']['0']?.source_url}
             alt={post.title?.rendered}
             class="w-24 h-24 object-cover border border-zinc-100/10"
+            width={96}
+            height={96}
+            quality={80}
         />
         <div class="min-w-0 flex-1">
             <h3 class="font-medium text-zinc-100">
@@ -34,10 +39,13 @@ const { post, variant = 'default' } = Astro.props;
 ) : (
     <article class="bg-zinc-900 overflow-hidden border border-zinc-100/10 shadow-lg">
         <a href={`/posts/${post.slug}/`} class="block aspect-[16/10] overflow-hidden">
-            <img
+            <Image
                 src={post._embedded['wp:featuredmedia']['0']?.source_url}
                 alt={post.title?.rendered}
                 class="w-full h-full object-cover"
+                width={800}
+                height={500}
+                quality={80}
             />
         </a>
         <div class="p-5">
